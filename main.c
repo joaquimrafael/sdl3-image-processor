@@ -219,14 +219,14 @@ static SDL_AppResult initialize(void)
     return SDL_APP_FAILURE;
   }
   
-  if(SDL_SetWindowParent(&g_windowChild.window, &g_window.window) != 0) 
+  if(!SDL_SetWindowParent(g_windowChild.window, g_window.window)) 
   {
     SDL_Log("\tErro setar parentesco entre a janela filho e pai: %s", SDL_GetError());
     SDL_Log("<<< initialize()");
     return SDL_APP_FAILURE;
   }
 
-  if(TTF_Init() == -1)
+  if(!TTF_Init())
   {
     SDL_Log("\t*** Erro ao inicializar SDL_ttf: %s", SDL_GetError());
     SDL_Log("<<< initialize()");
